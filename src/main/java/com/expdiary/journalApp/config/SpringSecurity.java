@@ -31,7 +31,7 @@ public class SpringSecurity {
                 .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/journal/**", "/user/**").authenticated()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().permitAll())
+                .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
@@ -46,18 +46,4 @@ public class SpringSecurity {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    // @Bean
-    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
-    // Exception {
-
-    // return http.authorizeHttpRequests(request -> request
-    // .requestMatchers("/public/**").permitAll()
-    // .requestMatchers("/journal/**", "/user/**").authenticated()
-    // .requestMatchers("/admin/**").hasRole("ADMIN")
-    // .anyRequest().authenticated())
-    // .httpBasic(Customizer.withDefaults())
-    // .csrf(AbstractHttpConfigurer::disable)
-    // .build();
-    // }
 }

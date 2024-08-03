@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +23,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     public static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     // create
     public void saveEntry(User user) {
@@ -49,7 +53,8 @@ public class UserService {
             user.setRoles(Arrays.asList("USER", "ADMIN"));
             userRepository.save(user);
         } catch (Exception e) {
-            log.error("Exception", e);
+            logger.error("heheheheheh");
+            // log.error("Exception", e);
         }
     }
 
